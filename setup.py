@@ -17,6 +17,9 @@ setup(
     entry_points={
         "console_scripts": ['bootstrap = tagme.tagme:main']
         },
+    install_requires=[
+        'Gooey',
+        ],
     version=version,
     description="Python command line application to set tags in filename.",
     long_description="TBD",
