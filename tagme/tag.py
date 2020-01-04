@@ -21,7 +21,8 @@ class Tag():
         for i in self.TAG_LIST:
             if i in tags:
                 current_tag.append(i)
-            else:
+        for i in tags:
+            if i not in self.TAG_LIST:
                 raise Exception('tag %s is not supported' % i)
         return current_tag
 
