@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""setuptools control."""
-
 import re
 from setuptools import setup
 
@@ -15,7 +13,7 @@ setup(
     name="tagme",
     packages=["tagme"],
     entry_points={
-        "console_scripts": ['bootstrap = tagme.tagme:main']
+        "console_scripts": ['tagme = tagme.tagme:main']
         },
     install_requires=[
         'Gooey',
