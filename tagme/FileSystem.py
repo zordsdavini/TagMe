@@ -4,27 +4,22 @@ import os
 class FileSystem():
 
     def get_files(self, path_name: str) -> list:
-        listfiles = []
+        list_files: list = []
         for dirpath, dirnames, files in os.walk(path_name):
             #print(f'Found directory: {dirpath}')
             for file_name in files:
-                listfiles.append(os.path.join(dirpath, file_name))
-        print(listfiles)
-        return listfiles
+                list_files.append(os.path.join(dirpath, file_name))
+        #print(list_files)
+        return list_files
 
+    def get_file_names(self, path_name: str) -> list:
+        list_file_names: list = []
+        for i in self.get_files(path_name):
+            list_file_names.append(os.path.basename(i))
+        #print(list_file_names)
+        return list_file_names
 
 test_path = '/home/kri/Pictures/Favorites/Walpapers/Copy_Top Layers'
 a = FileSystem()
 a.get_files(test_path)
-
-
-
-
-
-
-'''
-        with os.scandir(path_name) as entries:
-            for entry in entries:
-                print(entry.name)
-            return entry.name
-'''
+a.get_file_names(test_path)
