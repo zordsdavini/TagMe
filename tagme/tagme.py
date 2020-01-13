@@ -5,14 +5,14 @@
 from gooey import Gooey, GooeyParser
 from tagme.tag import Tag
 
-__version__ = "0.0.3"
-actions = [
-        'add_tag_to_file',
-        'add_tag_to_directory',
-        'remove_tag_from_file',
-        'remove_tag_from_directory',
-        'clean_directory',
-        ]
+__version__ = "0.0.4"
+# actions = [
+#         'add_tag_to_file',
+#         'add_tag_to_directory',
+#         'remove_tag_from_file',
+#         'remove_tag_from_directory',
+#         'clean_directory',
+#         ]
 
 
 @Gooey(program_name="TagMe",
@@ -21,28 +21,30 @@ actions = [
        )
 def main():
     parser = GooeyParser()
-    parser.add_argument('actions',
-                        help="select wanted action",
-                        widget='Listbox',
-                        choices=actions,
-                        nargs="*"
-                        )
+    subs = parser.add_subparsers(help='command', dest='command')
 
-    subs = parser.add_subparsers(help='commands', dest='commands')
-
-    add_tag_to_file_parser = subs.add_parser(
-            'add_tag_to_file', help='add tags to selected files'
-            )
-    add_tag_to_file_parser.add_argument('filename', help="name of the file to process", widget="FileChooser")
-    add_tag_to_file_parser.add_argument('tags', help="select wanted tags", widget='Listbox', choices=Tag.TAG_LIST, nargs="*")
+    add_tag_to_file = subs.add_parser('add_tag_to_file',
+                                      help='add tags to selected files'
+                                      )
+    add_tag_to_file.add_argument('files',
+                                 help="select files to process",
+                                 widget="MultiFileChooser"
+                                 )
+    add_tag_to_file.add_argument('tags',
+                                 help="select tags",
+                                 widget='Listbox',
+                                 choices=Tag.TAG_LIST,
+                                 nargs="*"
+                                 )
 
     args = parser.parse_args()
 
-    if args.actions == 'add_tag_to_file':
+    if args.command == 'add_tag_to_file':
         print('Adding tag to file...')
-        add_tag_to_file(args.tags, args.filename)
+        process_add_tag_to_file(args.tags, args.files.split(':'))
 
 
-def add_tag_to_file(tags: list, filename: str):
+def process_add_tag_to_file(tags: list, files: list):
     tag_manager = Tag()
-    tag_manager.add_tag()
+    for filename in files:
+        tag_manager.add_tag(tags, filename)
