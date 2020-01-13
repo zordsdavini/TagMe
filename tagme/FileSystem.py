@@ -1,5 +1,5 @@
 import os
-import tag
+#import tag
 
 
 class FileSystem():
@@ -21,7 +21,7 @@ class FileSystem():
         return list_file_names
 
 
-test_path = '/home/kri/Pictures/Favorites/Walpapers/Copy_Top Layers'
-a = FileSystem()
-a.get_files(test_path)
-a.get_file_names(test_path)
+#test_path = '/home/kri/Pictures/Favorites/Walpapers/Copy_Top Layers'
+#a = FileSystem()
+#a.get_files(test_path)
+#a.get_file_names(test_path)
