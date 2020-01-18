@@ -1,8 +1,11 @@
 import os
-#import tag
+from TagMe.tag import Tag
 
 
-class FileSystem():
+class FileSystem:
+    def __init__(self):
+        pass
+        self.tag = Tag()
 
     def get_files(self, path_name: str) -> list:
         list_files: list = []
@@ -16,7 +19,8 @@ class FileSystem():
     def get_file_names(self, path_name: str) -> list:
         list_file_names: list = []
         for i in self.get_files(path_name):
-            list_file_names.append(os.path.basename(i))
+            #list_file_names.append(os.path.basename(i))
+            list_file_names.append(self.tag.prepare_filename(i))
         #print(list_file_names)
         return list_file_names
 
@@ -24,4 +28,5 @@ class FileSystem():
 #test_path = '/home/kri/Pictures/Favorites/Walpapers/Copy_Top Layers'
 #a = FileSystem()
 #a.get_files(test_path)
-#a.get_file_names(test_path)
+#b=a.get_file_names(test_path)
+#print(b)

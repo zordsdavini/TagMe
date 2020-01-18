@@ -2,7 +2,7 @@ import os
 import re
 
 
-class Tag():
+class Tag:
     TAG_LIST = ['F', 'W', 'ZY', 'DO', 'KRI', 'NAG', 'DUM', 'ST', 'FE', 'AU']
     TAG_PATTERN = '_[A-Z_]+__'
 

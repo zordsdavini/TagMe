@@ -1,6 +1,6 @@
 import pytest
 
-from tagme.tag import Tag
+from TagMe.tag import Tag
 
 
 TAG = Tag()
