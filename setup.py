@@ -5,15 +5,15 @@ from setuptools import setup
 
 version = re.search(
     '^__version__\s*=\s*"(.*)"',
-    open('tagme/tagme.py').read(),
+    open('TagMe/tagme.py').read(),
     re.M
     ).group(1)
 
 setup(
     name="tagme",
-    packages=["tagme"],
+    packages=["TagMe"],
     entry_points={
-        "console_scripts": ['tagme = tagme.tagme:main']
+        "console_scripts": ['tagme = TagMe.tagme:main']
         },
     install_requires=[
         'Gooey',
