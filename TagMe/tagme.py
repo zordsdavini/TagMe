@@ -2,75 +2,55 @@
 
 """Main run script."""
 
-from gooey import Gooey, GooeyParser
+from argparse import ArgumentParser
 from TagMe.tag import Tag
-from TagMe.filesystem import FileSystem
+from TagMe.command import Command
 
-__version__ = "0.0.4"
-# actions = [
-#         'add_tag_to_file',
-#         'add_tag_to_directory',
-#         'remove_tag_from_file',
-#         'remove_tag_from_directory',
-#         'clean_directory',
-#         ]
+__version__ = "0.0.6"
+__short_description__ = "Command line application to set tags in filename."
+
+actions = [
+        'add_tag_to_file',
+        'add_tag_to_directory',
+        'remove_tag_from_file',
+        'remove_tag_from_directory',
+        'clean_directory',
+        ]
 
 
-@Gooey(program_name="TagMe",
-       program_description=__version__,
-       advanced=True
-       )
 def main():
-    parser = GooeyParser()
-    subs = parser.add_subparsers(help='command', dest='command')
+    command_manager = Command()
 
-    add_tag_to_file = subs.add_parser('add_tag_to_file',
-                                      help='add tags to selected files'
-                                      )
-    add_tag_to_file.add_argument('files',
-                                 help="select files to process",
-                                 widget="MultiFileChooser"
-                                 )
-    add_tag_to_file.add_argument('tags',
-                                 help="select tags",
-                                 widget='Listbox',
-                                 choices=Tag.TAG_LIST,
-                                 nargs="*"
-                                 )
+    parser = ArgumentParser(prog="TagMe", description=__short_description__)
 
-    add_tag_to_directory = subs.add_parser('add_tag_to_directory',
-                                           help='add tags to selected directory recursevly'
-                                           )
-    add_tag_to_directory.add_argument('directory',
-                                      help="select directory to process",
-                                      widget="DirChooser"
-                                      )
-    add_tag_to_directory.add_argument('tags',
-                                      help="select tags",
-                                      widget='Listbox',
-                                      choices=Tag.TAG_LIST,
-                                      nargs="*"
-                                      )
+    parser.add_argument(
+            'command',
+            choices=actions,
+            help='main command to be executed')
+    parser.add_argument(
+            '-f',
+            '--files',
+            help="file or files (separated by comma, ex. `a.jpg,b.jpg`) to process")
+    parser.add_argument(
+            '-t',
+            '--tags',
+            choices=Tag.TAG_LIST,
+            help="tags (separated by comma) to process")
+    parser.add_argument(
+            '-d',
+            '--directory',
+            help="directory to process")
+
     args = parser.parse_args()
 
     if args.command == 'add_tag_to_file':
         print('Adding tag to file...')
-        process_add_tag_to_file(args.tags, args.files.split(':'))
+        command_manager.process_add_tag_to_file(
+                args.tags.split(','),
+                args.files.split(','))
+
     elif args.command == 'add_tag_to_directory':
         print('Adding tag to directory...')
-        process_add_tag_to_directory(args.tags, args.directory)
-
-
-def process_add_tag_to_file(tags: list, files: list):
-    tag_manager = Tag()
-    for filename in files:
-        tag_manager.add_tag(tags, filename)
-
-
-def process_add_tag_to_directory(tags: list, directory: str):
-    tag_manager = Tag()
-    filesystem = FileSystem()
-
-    files = filesystem.get_files(directory)
-    for filename in files:
-        tag_manager.add_tag(tags, filename)
+        command_manager.process_add_tag_to_directory(
+                args.tags.split(','),
+                args.directory)

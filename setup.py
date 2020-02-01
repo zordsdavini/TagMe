@@ -8,18 +8,20 @@ version = re.search(
     open('TagMe/tagme.py').read(),
     re.M
     ).group(1)
+short_descrription = re.search(
+    '^__short_description__\s*=\s*"(.*)"',
+    open('TagMe/tagme.py').read(),
+    re.M
+    ).group(1)
 
 setup(
     name="tagme",
     packages=["TagMe"],
     entry_points={
-        "console_scripts": ['tagme = TagMe.tagme:main']
+        "console_scripts": ['tagme-cli = TagMe.tagme:main']
         },
-    install_requires=[
-        'Gooey',
-        ],
     version=version,
-    description="Python command line application to set tags in filename.",
+    description=short_descrription,
     long_description="TBD",
     author="Arns & Kristina Udovič",
     author_email="zordsdavini@gmail.com, kristina.udoviciene@gmail.com",

@@ -3,7 +3,7 @@ import re
 
 
 class Tag:
-    TAG_LIST = ['F', 'W', 'ZY', 'DO', 'KRI', 'NAG', 'DUM', 'ST', 'FE', 'AU']
+    TAG_LIST = ['F', 'W', 'ZY', 'DO', 'KRI', 'NAG', 'DUM', 'ST', 'E', 'AU']
     TAG_PATTERN = '_[A-Z_]+__'
 
     def mod_tag(self, tags: list) -> str:
