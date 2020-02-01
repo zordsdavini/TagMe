@@ -7,9 +7,9 @@ class FileSystem:
         pass
         self.tag = Tag()
 
-    def get_files(self, path_name: str) -> list:
+    def get_files(self, dir_path: str) -> list:
         list_files: list = []
-        for dirpath, dirnames, files in os.walk(path_name):
+        for dirpath, dirnames, files in os.walk(dir_path):
             #print(f'Found directory: {dirpath}')
             for file_name in files:
                 list_files.append(os.path.join(dirpath, file_name))
