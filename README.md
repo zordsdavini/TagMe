@@ -19,3 +19,5 @@ To run directly from source code:
 
 ## Run
 To run command: `tagme-cli`
+
+ex., `tagme-cli add_tag_to_file -t F W -f /home/a/o/e/www.j /home/a/o/e/www2.j`
