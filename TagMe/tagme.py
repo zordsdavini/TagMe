@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 from TagMe.tag import Tag
 from TagMe.command import Command
 
-__version__ = "0.0.7"
+__version__ = "0.0.8"
 __short_description__ = "Command line application to set tags in filename."
 
 actions = [
@@ -61,15 +61,15 @@ def main():
                 args.tags,
                 args.directory)
 
-    elif args.command == 'remove_tag_to_file':
+    elif args.command == 'remove_tag_from_file':
         print('Removing tag to file...')
-        command_manager.process_remove_tag_to_file(
+        command_manager.process_remove_tag_from_file(
                 args.tags,
                 args.files)
 
-    elif args.command == 'remove_tag_to_directory':
+    elif args.command == 'remove_tag_from_directory':
         print('Removing tag to directory...')
-        command_manager.process_remove_tag_to_directory(
+        command_manager.process_remove_tag_from_directory(
                 args.tags,
                 args.directory)
 

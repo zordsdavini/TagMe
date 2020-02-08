@@ -16,12 +16,12 @@ class Command:
         for file_path in files:
             tag_manager.add_tag(tags, file_path)
 
-    def process_remove_tag_to_file(self, tags: list, files: list):
+    def process_remove_tag_from_file(self, tags: list, files: list):
         tag_manager = Tag()
         for file_path in files:
             tag_manager.remove_tag(tags, file_path)
 
-    def process_remove_tag_to_directory(self, tags: list, directory: str):
+    def process_remove_tag_from_directory(self, tags: list, directory: str):
         tag_manager = Tag()
         filesystem = FileSystem()
 
