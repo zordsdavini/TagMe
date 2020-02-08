@@ -42,6 +42,10 @@ def main():
             '-d',
             '--directory',
             help="directory to process")
+    parser.add_argument(
+            '-s',
+            '--source_directory',
+            help="source directory to process (to clean)")
 
     args = parser.parse_args()
 
@@ -55,4 +59,22 @@ def main():
         print('Adding tag to directory...')
         command_manager.process_add_tag_to_directory(
                 args.tags,
+                args.directory)
+
+    elif args.command == 'remove_tag_to_file':
+        print('Removing tag to file...')
+        command_manager.process_remove_tag_to_file(
+                args.tags,
+                args.files)
+
+    elif args.command == 'remove_tag_to_directory':
+        print('Removing tag to directory...')
+        command_manager.process_remove_tag_to_directory(
+                args.tags,
+                args.directory)
+
+    elif args.command == 'clean_directory':
+        print('Cleaning directory...')
+        command_manager.process_clean_directory(
+                args.source_directory,
                 args.directory)

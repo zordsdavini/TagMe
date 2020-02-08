@@ -5,9 +5,9 @@ Tag multiple files by rename. Tag should appairs in filename. This is command li
 Supported commands:
   - add_tag_to_file - select one or many files sepparated by comma and add tags that can be sepparated by comma
   - add_tag_to_directory - add tags to given directory
-  - remove_tag_from_file - TBD
-  - remove_tag_from_directory - TBF
-  - clean_directory - TBD
+  - remove_tag_to_file - select one or many files sepparated by comma and remove tags that can be sepparated by comma
+  - remove_tag_to_directory - remove tags from given directory
+  - clean_directory - remove files from source directory what exists in destination directory
 
 
 ## Testing command
