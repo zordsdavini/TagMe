@@ -35,6 +35,7 @@ class FileSystem:
     def delete_file(self, file_path: str):
         try:
             os.remove(file_path)
+            print(file_path)
         except OSError as err:
             print(f'Error: {file_path} : {err.strerror}')
             return
@@ -43,6 +44,7 @@ class FileSystem:
         if len(self.get_files(dir_name)) == 0:
             try:
                 os.rmdir(dir_name)
+                print(dir_name)
             except OSError as err:
                 print(f'Error: {dir_name} : {err.strerror}')
 

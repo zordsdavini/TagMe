@@ -54,6 +54,7 @@ class Tag:
         dest_file_name = self.mod_tag(updated_tags) + self.prepare_filename(file_path)
         dest_path = os.path.dirname(file_path) + '/' + dest_file_name
         os.rename(file_path, dest_path)
+        print(dest_path)
 
     def add_tag(self, tags: list, file_path: str):
         '''Add defined tags to file name'''
@@ -63,6 +64,7 @@ class Tag:
         dest_file_name = self.mod_tag(tags) + self.prepare_filename(file_path)
         dest_path = os.path.dirname(file_path) + '/' + dest_file_name
         os.rename(file_path, dest_path)
+        print(dest_path)
 
 #path_test = '/home/kri/Pictures/Favorites/Walpapers/Copy_Top Layers/_W_ZY__peiza1.jpeg'
 #tags = ['ZY','DO']
